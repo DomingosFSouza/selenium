@@ -1,32 +1,26 @@
+#arquivo base coletado e modificado de acordo com o sugerido pelas documentações do Google
 from __future__ import print_function
-
 import os.path
-
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
-# If modifying these scopes, delete the file token.json.
+#escopo para autenticação
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
 
-# The ID and range of a sample spreadsheet.
+#ID do arquivo (arquivo real presente no sheets) e Range inicial para modificações do sheets
 SAMPLE_SPREADSHEET_ID = '168CVHJoTguQGztFrMTj9j59B7rE1delk'
 SAMPLE_RANGE_NAME = 'games!A2:H101'
 
 
 def main():
-    """Shows basic usage of the Sheets API.
-    Prints values from a sample spreadsheet.
-    """
+
     creds = None
-    # The file token.json stores the user's access and refresh tokens, and is
-    # created automatically when the authorization flow completes for the first
-    # time.
+    # ajuste feito para download do token neste diretório, para caso de login do usuário pela primeira vez; caso já tenha logado ou tenha o arquivo token válido, irá logar/autenticar diretamente
     if os.path.exists('token.json'):
         creds = Credentials.from_authorized_user_file('token.json', SCOPES)
-    # If there are no (valid) credentials available, let the user log in.
     if not creds or not creds.valid:
         if creds and creds.expired and creds.refresh_token:
             creds.refresh(Request())
@@ -34,31 +28,29 @@ def main():
             flow = InstalledAppFlow.from_client_secrets_file(
                 'client_secret.json', SCOPES)
             creds = flow.run_local_server(port=0)
-        # Save the credentials for the next run
         with open('token.json', 'w') as token:
             token.write(creds.to_json())
 
     try:
         service = build('sheets', 'v4', credentials=creds)
 
-        #to create a sheets
+        #bloco de código para criação/envio do sheets
         # spreadsheet_body = {
-        # #TO DO: Add desired entries to the request body of your sheets.
+        # 
         # }
 
         # request = service.spreadsheets().create(body=spreadsheet_body)
         # response = request.execute()
 
-        # # TO DO: Change code below to process the `response` dict:
         # pprint(response)
 
-        # Call the Sheets API
+        #Visualização do sheet
         sheet = service.spreadsheets()
         result = sheet.values().get(spreadsheetId=SAMPLE_SPREADSHEET_ID,
                                     range=SAMPLE_RANGE_NAME).execute()
         values = result.get('values', [])
 
-        #for changes in sheets api
+        #bloco de código resultado de alterações a serem feitas no sheet. o bloco 'changes' repesenta as mudanças a serem adicionadas (terá que se alterar o range para o mesmo)
         # changes=[
 
         # ]
