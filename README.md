@@ -14,7 +14,7 @@ Chromedriver|111|Em uso
 BeautifulSoup|4.12.2|Em uso
 
 ## Arquivos do projeto
-1. [Automação de coleta de dados e envio para o Google BigQuery](../testeSteam/teste.py)
-1. [CRUD para uso do arquivo no Google Sheets](../testeSteam/sheets.py)
-1. [Planilha com os dados coletados no arquivo 1](../testeSteam/steamGames.xlsx)
+1. [Automação de coleta de dados e envio para o Google BigQuery](https://github.com/DomingosFSouza/selenium/blob/main/testeSteam/teste.py)
+1. [CRUD para uso do arquivo no Google Sheets](https://github.com/DomingosFSouza/selenium/blob/main/testeSteam/sheets.py)
+1. [Planilha com os dados coletados no arquivo 1](https://github.com/DomingosFSouza/selenium/blob/main/testeSteam/steamGames.xlsx)
 1. [Link para visualizar o sheets](https://docs.google.com/spreadsheets/d/168CVHJoTguQGztFrMTj9j59B7rE1delk/edit?usp=sharing&ouid=113560417324643837972&rtpof=true&sd=true)
